@@ -91,7 +91,7 @@ model.fit(X_train, y_train)
 y_pred = model.predict(X_test)
 print(classification_report(y_test, y_pred))
 
-# We will now have a model that gives the return probability of any orde
+# We will now have a modele that gives the return probability of any order
 
 
 #step-5 :Export high risk products----------------------------------------------------
@@ -99,7 +99,7 @@ print(classification_report(y_test, y_pred))
   Use the trained logistic regression model to predict the probability of a product being returned and export the high-risk orders (e.g., probability > 70%) into a CSV file.
 Step	What we will  Do:-
 predict_proba()	                     Got probabilities of return for each order
-df[df['Return_Prob'] > .7]	         Filtered orders that are high risk
+df[df['Return_Prob'] > .5]	         Filtered orders that are high risk
 to_csv()	                           Saved high-risk records to CSV for reporting/dashboard'''
 
 # Predict return probability for ALL rows (not just test set)
@@ -114,7 +114,7 @@ df_model_all = df_model_all.reindex(columns=X_train.columns, fill_value=0)
 # Predict probabilities
 df['Return_Prob'] = model.predict_proba(df_model_all)[:, 1]
 
-# Set threshold — returns predicted with > 70% probability
+# Set threshold — returns predicted with > 50% probability
 high_risk_df = df[df['Return_Prob'] > 0.5]
 
 # Check how many rows matched
